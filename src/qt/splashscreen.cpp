@@ -36,7 +36,7 @@ SplashScreen::SplashScreen(const QPixmap &pixmap, Qt::WindowFlags f) :
     }
 
     QPainter pixPaint(&newPixmap);
-    pixPaint.setPen(QColor(70,70,70));
+    pixPaint.setPen(QColor(150,150,150));
 
     pixPaint.setFont(QFont(font, 9*fontFactor));
     pixPaint.drawText(paddingLeftCol2,paddingTopCol2+line3,versionText);
