@@ -26,9 +26,9 @@ UI_DIR = build
 # use: qmake "RELEASE=1"
 contains(RELEASE, 1) {
     # Mac: compile for maximum compatibility (10.5, 32-bit)
-    macx:QMAKE_CXXFLAGS += -mmacosx-version-min=10.5 - stativ -arch i386 -isysroot  /Developer/SDKs/MacOSX10.5.sdk
+    macx:QMAKE_CXXFLAGS += -mmacosx-version-min=10.5 -arch i386 -isysroot /Developer/SDKs/MacOSX10.5.sdk
     macx:QMAKE_CFLAGS += -mmacosx-version-min=10.5 -arch i386 -isysroot /Developer/SDKs/MacOSX10.5.sdk
-    macx:QMAKE_OBJECTIVE_CFLAGS += -mmacosx-version-min=10.5 - static -arch i386 -isysroot /Developer/SDKs/MacOSX10.5.sdk
+    macx:QMAKE_OBJECTIVE_CFLAGS += -mmacosx-version-min=10.5 -arch i386 -isysroot /Developer/SDKs/MacOSX10.5.sdk
 
     !win32:!macx {
         # Linux: static link and extra security (see: https://wiki.debian.org/Hardening)
@@ -96,8 +96,8 @@ contains(USE_IPV6, -) {
     DEFINES += USE_IPV6=$$USE_IPV6
 }
 
-contains(globalboost_NEED_QT_PLUGINS, 1) {
-    DEFINES += globalboost_NEED_QT_PLUGINS
+contains(BITCOIN_NEED_QT_PLUGINS, 1) {
+    DEFINES += BITCOIN_NEED_QT_PLUGINS
     QTPLUGIN += qcncodecs qjpcodecs qtwcodecs qkrcodecs qtaccessiblewidgets
 }
 
@@ -135,7 +135,7 @@ QMAKE_CXXFLAGS_WARN_ON = -fdiagnostics-show-option -Wall -Wextra -Wformat -Wform
 
 # Input
 DEPENDPATH += src src/json src/qt
-HEADERS += src/qt/globalboostgui.h \
+HEADERS += src/qt/bitcoingui.h \
     src/qt/transactiontablemodel.h \
     src/qt/addresstablemodel.h \
     src/qt/optionsdialog.h \
@@ -146,7 +146,7 @@ HEADERS += src/qt/globalboostgui.h \
     src/qt/signverifymessagedialog.h \
     src/qt/aboutdialog.h \
     src/qt/editaddressdialog.h \
-    src/qt/globalboostaddressvalidator.h \
+    src/qt/bitcoinaddressvalidator.h \
     src/alert.h \
     src/addrman.h \
     src/base58.h \
@@ -186,7 +186,7 @@ HEADERS += src/qt/globalboostgui.h \
     src/qt/monitoreddatamapper.h \
     src/qt/transactiondesc.h \
     src/qt/transactiondescdialog.h \
-    src/qt/globalboostamountfield.h \
+    src/qt/bitcoinamountfield.h \
     src/wallet.h \
     src/keystore.h \
     src/qt/transactionfilterproxy.h \
@@ -195,13 +195,13 @@ HEADERS += src/qt/globalboostgui.h \
     src/qt/walletview.h \
     src/qt/walletstack.h \
     src/qt/walletframe.h \
-    src/globalboostrpc.h \
+    src/bitcoinrpc.h \
     src/qt/overviewpage.h \
     src/qt/csvmodelwriter.h \
     src/crypter.h \
     src/qt/sendcoinsentry.h \
     src/qt/qvalidatedlineedit.h \
-    src/qt/globalboostunits.h \
+    src/qt/bitcoinunits.h \
     src/qt/qvaluecombobox.h \
     src/qt/askpassphrasedialog.h \
     src/protocol.h \
@@ -221,8 +221,8 @@ HEADERS += src/qt/globalboostgui.h \
     src/qt/macnotificationhandler.h \
     src/qt/splashscreen.h
 
-SOURCES += src/qt/globalboost.cpp \
-    src/qt/globalboostgui.cpp \
+SOURCES += src/qt/bitcoin.cpp \
+    src/qt/bitcoingui.cpp \
     src/qt/transactiontablemodel.cpp \
     src/qt/addresstablemodel.cpp \
     src/qt/optionsdialog.cpp \
@@ -233,7 +233,7 @@ SOURCES += src/qt/globalboost.cpp \
     src/qt/signverifymessagedialog.cpp \
     src/qt/aboutdialog.cpp \
     src/qt/editaddressdialog.cpp \
-    src/qt/globalboostaddressvalidator.cpp \
+    src/qt/bitcoinaddressvalidator.cpp \
     src/alert.cpp \
     src/version.cpp \
     src/sync.cpp \
@@ -257,8 +257,8 @@ SOURCES += src/qt/globalboost.cpp \
     src/qt/monitoreddatamapper.cpp \
     src/qt/transactiondesc.cpp \
     src/qt/transactiondescdialog.cpp \
-    src/qt/globalbooststrings.cpp \
-    src/qt/globalboostamountfield.cpp \
+    src/qt/bitcoinstrings.cpp \
+    src/qt/bitcoinamountfield.cpp \
     src/wallet.cpp \
     src/keystore.cpp \
     src/qt/transactionfilterproxy.cpp \
@@ -267,7 +267,7 @@ SOURCES += src/qt/globalboost.cpp \
     src/qt/walletview.cpp \
     src/qt/walletstack.cpp \
     src/qt/walletframe.cpp \
-    src/globalboostrpc.cpp \
+    src/bitcoinrpc.cpp \
     src/rpcdump.cpp \
     src/rpcnet.cpp \
     src/rpcmining.cpp \
@@ -279,7 +279,7 @@ SOURCES += src/qt/globalboost.cpp \
     src/crypter.cpp \
     src/qt/sendcoinsentry.cpp \
     src/qt/qvalidatedlineedit.cpp \
-    src/qt/globalboostunits.cpp \
+    src/qt/bitcoinunits.cpp \
     src/qt/qvaluecombobox.cpp \
     src/qt/askpassphrasedialog.cpp \
     src/protocol.cpp \
@@ -292,7 +292,7 @@ SOURCES += src/qt/globalboost.cpp \
     src/txdb.cpp \
     src/qt/splashscreen.cpp
 
-RESOURCES += src/qt/globalboost.qrc
+RESOURCES += src/qt/bitcoin.qrc
 
 FORMS += src/qt/forms/sendcoinsdialog.ui \
     src/qt/forms/coincontroldialog.ui \
@@ -313,14 +313,14 @@ SOURCES += src/qt/qrcodedialog.cpp
 FORMS += src/qt/forms/qrcodedialog.ui
 }
 
-contains(globalboost_QT_TEST, 1) {
+contains(BITCOIN_QT_TEST, 1) {
 SOURCES += src/qt/test/test_main.cpp \
     src/qt/test/uritests.cpp
 HEADERS += src/qt/test/uritests.h
 DEPENDPATH += src/qt/test
 QT += testlib
 TARGET = globalboost-qt_test
-DEFINES += globalboost_QT_TEST
+DEFINES += BITCOIN_QT_TEST
   macx: CONFIG -= app_bundle
 }
 
@@ -337,8 +337,8 @@ SOURCES_SSE2 += src/scrypt-sse2.cpp
 CODECFORTR = UTF-8
 
 # for lrelease/lupdate
-# also add new translations to src/qt/globalboost.qrc under translations/
-TRANSLATIONS = $$files(src/qt/locale/globalboost_*.ts)
+# also add new translations to src/qt/bitcoin.qrc under translations/
+TRANSLATIONS = $$files(src/qt/locale/bitcoin_*.ts)
 
 isEmpty(QMAKE_LRELEASE) {
     win32:QMAKE_LRELEASE = $$[QT_INSTALL_BINS]\\lrelease.exe
@@ -358,7 +358,7 @@ OTHER_FILES += README.md \
     doc/*.rst \
     doc/*.txt \
     doc/*.md \
-    src/qt/res/globalboost-qt.rc \
+    src/qt/res/bitcoin-qt.rc \
     src/test/*.cpp \
     src/test/*.h \
     src/qt/test/*.cpp \
@@ -395,7 +395,7 @@ isEmpty(BOOST_INCLUDE_PATH) {
 }
 
 win32:DEFINES += WIN32
-win32:RC_FILE = src/qt/res/globalboost-qt.rc
+win32:RC_FILE = src/qt/res/bitcoin-qt.rc
 
 win32:!contains(MINGW_THREAD_BUGFIX, 0) {
     # At least qmake's win32-g++-cross profile is missing the -lmingwthrd
