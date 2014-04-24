@@ -36,22 +36,16 @@ INCLUDEPATHS= \
  -I"$(CURDIR)" \
  -I"c:/deps/boost_1_55_0" \
  -I"c:/deps/db-4.8.30.NC/build_unix" \
- -I"c:/deps/openssl-1.0.1f/include" \
+ -I"c:/deps/openssl-1.0.1g/include" \
  -I"$(DEPSDIR)/include" \
- -I"$(DEPSDIR)/boost" \
- -I"$(DEPSDIR)/ssl/include" \
- -I"$(DEPSDIR)/db/build_unix" \
  -I"$(DEPSDIR)/miniupnpc"
 
 
 LIBPATHS= \
  -L"$(CURDIR)/leveldb" \
- -L"$(DEPSDIR)/boost/stage/lib" \
- -L"$(DEPSDIR)/ssl" \
- -L"$(DEPSDIR)/db/build_unix" \
  -L"c:/deps/boost_1_55_0/stage/lib" \
  -L"c:/deps/db-4.8.30.NC/build_unix" \
- -L"c:/deps/openssl-1.0.1f"
+ -L"c:/deps/openssl-1.0.1g"
 
 LIBS= \
  -l leveldb \
@@ -130,7 +124,7 @@ OBJS_SSE2= obj/scrypt-sse2.o
 OBJS += $(OBJS_SSE2)
 endif
 
-all: dopecoind.exe
+all: globalboostd.exe
 
 test check: test_dopecoin.exe FORCE
 	test_dopecoin.exe
@@ -150,7 +144,7 @@ obj/%-sse2.o: %-sse2.cpp
 obj/%.o: %.cpp $(HEADERS)
 	$(CXX) -c $(CFLAGS) -o $@ $<
 
-dopecoind.exe: $(OBJS:obj/%=obj/%)
+globalboostd.exe: $(OBJS:obj/%=obj/%)
 	$(CXX) $(CFLAGS) $(LDFLAGS) -o $@ $(LIBPATHS) $^ $(LIBS)
 
 TESTOBJS := $(patsubst test/%.cpp,obj-test/%.o,$(wildcard test/*.cpp))
@@ -162,7 +156,7 @@ test_dopecoin.exe: $(TESTOBJS) $(filter-out obj/init.o,$(OBJS:obj/%=obj/%))
 	$(CXX) $(CFLAGS) $(LDFLAGS) -o $@ $(LIBPATHS) $^ -lboost_unit_test_framework$(BOOST_SUFFIX) $(LIBS)
 
 clean:
-	rm -f dopecoind.exe test_dopecoin.exe
+	rm -f globalboostd.exe test_globalboost.exe
 	rm -f obj/*
 	rm -f obj-test/*
 	cd leveldb && $(MAKE) TARGET_OS=NATIVE_WINDOWS clean && cd ..
