@@ -15,37 +15,21 @@
 # 'make clean' assumes it is running inside a MSYS shell, and uses 'rm'
 # to remove files.
 
-
-##########################################################################################################
-
-
-
-
-###############################################################################################################
-
 CXX ?= g++
 
 USE_UPNP:=-
 USE_IPV6:=1
 
-DEPSDIR?=/c/deps
-BOOST_SUFFIX?=-mgw48-mt-s-1_55
-
+DEPSDIR?=/usr/local
+BOOST_SUFFIX?=-mgw46-mt-sd-1_52
 
 INCLUDEPATHS= \
  -I"$(CURDIR)" \
- -I"c:/deps/boost_1_55_0" \
- -I"c:/deps/db-4.8.30.NC/build_unix" \
- -I"c:/deps/openssl-1.0.1g/include" \
- -I"$(DEPSDIR)/include" \
- -I"$(DEPSDIR)/miniupnpc"
-
+ -I"$(DEPSDIR)/include"
 
 LIBPATHS= \
  -L"$(CURDIR)/leveldb" \
- -L"c:/deps/boost_1_55_0/stage/lib" \
- -L"c:/deps/db-4.8.30.NC/build_unix" \
- -L"c:/deps/openssl-1.0.1g"
+ -L"$(DEPSDIR)/lib"
 
 LIBS= \
  -l leveldb \
@@ -61,9 +45,10 @@ LIBS= \
 
 DEFS=-D_MT -DWIN32 -D_WINDOWS -DBOOST_THREAD_USE_LIB -DBOOST_SPIRIT_THREADSAFE
 DEBUGFLAGS=-g
-CFLAGS=-fexceptions -mthreads -O2 -w -Wall -Wextra -Wformat -Wformat-security -Wno-unused-parameter $(DEBUGFLAGS) $(DEFS) $(INCLUDEPATHS)
+CFLAGS=-mthreads -O2 -w -Wall -Wextra -Wformat -Wformat-security -Wno-unused-parameter $(DEBUGFLAGS) $(DEFS) $(INCLUDEPATHS)
 # enable: ASLR, DEP and large address aware
-LDFLAGS=-Wl,--dynamicbase -Wl,--nxcompat -Wl,--large-address-aware -static
+LDFLAGS=-Wl,--dynamicbase -Wl,--nxcompat -Wl,--large-address-aware
+
 TESTDEFS = -DTEST_DATA_DIR=$(abspath test/data)
 
 ifndef USE_UPNP
@@ -125,8 +110,8 @@ endif
 
 all: globalboostd.exe
 
-test check: test_dopecoin.exe FORCE
-	test_dopecoin.exe
+test check: test_globalboost.exe FORCE
+	test_globalboost.exe
 
 #
 # LevelDB support
@@ -151,7 +136,7 @@ TESTOBJS := $(patsubst test/%.cpp,obj-test/%.o,$(wildcard test/*.cpp))
 obj-test/%.o: test/%.cpp $(HEADERS)
 	$(CXX) -c $(TESTDEFS) $(CFLAGS) -o $@ $<
 
-test_dopecoin.exe: $(TESTOBJS) $(filter-out obj/init.o,$(OBJS:obj/%=obj/%))
+test_globalboost.exe: $(TESTOBJS) $(filter-out obj/init.o,$(OBJS:obj/%=obj/%))
 	$(CXX) $(CFLAGS) $(LDFLAGS) -o $@ $(LIBPATHS) $^ -lboost_unit_test_framework$(BOOST_SUFFIX) $(LIBS)
 
 clean:

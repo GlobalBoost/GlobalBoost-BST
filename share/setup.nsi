@@ -5,7 +5,7 @@ SetCompressor /SOLID lzma
 
 # General Symbol Definitions
 !define REGKEY "SOFTWARE\$(^Name)"
-!define VERSION 0.8.6.2
+!define VERSION 0.8.7.1
 !define COMPANY "Globalboost project"
 !define URL http://www.globalboost.org/
 
@@ -45,13 +45,13 @@ Var StartMenuGroup
 !insertmacro MUI_LANGUAGE English
 
 # Installer attributes
-OutFile globalboost-0.8.6.2-win32-setup.exe
+OutFile globalboost-${VERSION}-win32-setup.exe
 InstallDir $PROGRAMFILES\Globalboost
 CRCCheck on
 XPStyle on
 BrandingText " "
 ShowInstDetails show
-VIProductVersion 0.8.6.2
+VIProductVersion ${VERSION}
 VIAddVersionKey ProductName Globalboost
 VIAddVersionKey ProductVersion "${VERSION}"
 VIAddVersionKey CompanyName "${COMPANY}"

@@ -1318,7 +1318,7 @@ Address: %4
     </message>
     <message>
         <location line="+10"/>
-        <source>123.456 BTC</source>
+        <source>123.456 BST</source>
         <translation>123.456 לייטקוין</translation>
     </message>
     <message>
@@ -2236,8 +2236,8 @@ Address: %4
     </message>
     <message>
         <location line="-28"/>
-        <source>Listen for connections on &lt;port&gt; (default: 12368 or testnet: 112368)</source>
-        <translation>האזן לחיבורים ב&lt;פורט&gt; (ברירת מחדל: 12368 או ברשת הבדיקה: 112368)</translation>
+        <source>Listen for connections on &lt;port&gt; (default: 9333 or testnet: 19333)</source>
+        <translation>האזן לחיבורים ב&lt;פורט&gt; (ברירת מחדל: 9333 או ברשת הבדיקה: 19333)</translation>
     </message>
     <message>
         <location line="+5"/>

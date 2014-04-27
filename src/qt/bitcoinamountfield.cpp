@@ -1,3 +1,7 @@
+// Copyright (c) 2011-2013 The Bitcoin developers
+// Distributed under the MIT/X11 software license, see the accompanying
+// file COPYING or http://www.opensource.org/licenses/mit-license.php.
+
 #include "bitcoinamountfield.h"
 
 #include "qvaluecombobox.h"
@@ -145,7 +149,7 @@ void BitcoinAmountField::unitChanged(int idx)
     amount->setDecimals(BitcoinUnits::decimals(currentUnit));
     amount->setMaximum(qPow(10, BitcoinUnits::amountDigits(currentUnit)) - qPow(10, -amount->decimals()));
 
-    if(currentUnit == BitcoinUnits::uBTC)
+    if(currentUnit == BitcoinUnits::uBST)
         amount->setSingleStep(0.01);
     else
         amount->setSingleStep(0.001);

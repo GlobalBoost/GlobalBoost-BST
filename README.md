@@ -15,9 +15,9 @@ Globalboost is a version of Bitcoin using scrypt as a proof-of-work algorithm.
  - 1 Billion total coins
  
  - base58.h PUBKEY_ADDRESS = 58, // Globalboost addresses start with G
-  - src/protocol.h port: return testnet ? 12369 : 12368; 
- - src/init.cpp " -port=<port>           " + _("Listen for connections on <port> (default: 12368 or testnet: 12369)") + "\n" +
- - src/bitcoinrpc.cpp    return GetBoolArg("-testnet", false) ? 12367 : 12366;
+  - src/protocol.h port: return testnet ? 18224 : 8224; 
+ - src/init.cpp " -port=<port>           " + _("Listen for connections on <port> (default: 8224 or testnet: 18224)") + "\n" +
+ - src/bitcoinrpc.cpp    return GetBoolArg("-testnet", false) ? 18223 : 8223;
  - src/main.h max coin and dPriority
  - Set the genesis block in src/main.cpp LoadBlockIndex paraphrase (pszTimestamp) to any recent news phase. get the latest unix time (do a google), and put in block.nTime. set any nNonce (doesn't really matter)
  - src/base58.h PUBKEY_ADDRESS = 28, // Globalboost addresses start with G

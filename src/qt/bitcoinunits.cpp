@@ -1,3 +1,7 @@
+// Copyright (c) 2011-2013 The Bitcoin developers
+// Distributed under the MIT/X11 software license, see the accompanying
+// file COPYING or http://www.opensource.org/licenses/mit-license.php.
+
 #include "bitcoinunits.h"
 
 #include <QStringList>
@@ -11,9 +15,9 @@ BitcoinUnits::BitcoinUnits(QObject *parent):
 QList<BitcoinUnits::Unit> BitcoinUnits::availableUnits()
 {
     QList<BitcoinUnits::Unit> unitlist;
-    unitlist.append(BTC);
-    unitlist.append(mBTC);
-    unitlist.append(uBTC);
+    unitlist.append(BST);
+    unitlist.append(mBST);
+    unitlist.append(uBST);
     return unitlist;
 }
 
@@ -21,9 +25,9 @@ bool BitcoinUnits::valid(int unit)
 {
     switch(unit)
     {
-    case BTC:
-    case mBTC:
-    case uBTC:
+    case BST:
+    case mBST:
+    case uBST:
         return true;
     default:
         return false;
@@ -34,9 +38,9 @@ QString BitcoinUnits::name(int unit)
 {
     switch(unit)
     {
-    case BTC: return QString("BST");
-    case mBTC: return QString("mBST");
-    case uBTC: return QString::fromUtf8("μBST");
+    case BST: return QString("BST");
+    case mBST: return QString("mBST");
+    case uBST: return QString::fromUtf8("μBST");
     default: return QString("???");
     }
 }
@@ -45,9 +49,9 @@ QString BitcoinUnits::description(int unit)
 {
     switch(unit)
     {
-    case BTC: return QString("Globalboosts");
-    case mBTC: return QString("Milli-Globalboosts (1 / 1,000)");
-    case uBTC: return QString("Micro-Globalboosts (1 / 1,000,000)");
+    case BST: return QString("Globalboosts");
+    case mBST: return QString("Milli-Globalboosts (1 / 1,000)");
+    case uBST: return QString("Micro-Globalboosts (1 / 1,000,000)");
     default: return QString("???");
     }
 }
@@ -56,9 +60,9 @@ qint64 BitcoinUnits::factor(int unit)
 {
     switch(unit)
     {
-    case BTC:  return 100000000;
-    case mBTC: return 100000;
-    case uBTC: return 100;
+    case BST:  return 100000000;
+    case mBST: return 100000;
+    case uBST: return 100;
     default:   return 100000000;
     }
 }
@@ -67,9 +71,9 @@ int BitcoinUnits::amountDigits(int unit)
 {
     switch(unit)
     {
-    case BTC: return 8; // 21,000,000 (# digits, without commas)
-    case mBTC: return 11; // 21,000,000,000
-    case uBTC: return 14; // 21,000,000,000,000
+    case BST: return 8; // 21,000,000 (# digits, without commas)
+    case mBST: return 11; // 21,000,000,000
+    case uBST: return 14; // 21,000,000,000,000
     default: return 0;
     }
 }
@@ -78,9 +82,9 @@ int BitcoinUnits::decimals(int unit)
 {
     switch(unit)
     {
-    case BTC: return 8;
-    case mBTC: return 5;
-    case uBTC: return 2;
+    case BST: return 8;
+    case mBST: return 5;
+    case uBST: return 2;
     default: return 0;
     }
 }

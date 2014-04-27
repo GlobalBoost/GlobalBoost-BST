@@ -1319,8 +1319,8 @@ Address: %4
     </message>
     <message>
         <location line="+10"/>
-        <source>123.456 BTC</source>
-        <translation>123.456 BTC</translation>
+        <source>123.456 BST</source>
+        <translation>123.456 BST</translation>
     </message>
     <message>
         <location line="+31"/>
@@ -2244,8 +2244,8 @@ Address: %4
     </message>
     <message>
         <location line="-28"/>
-        <source>Listen for connections on &lt;port&gt; (default: 12368 or testnet: 112368)</source>
-        <translation>在通訊埠 &lt;port&gt; 聽候連線 (預設: 12368, 或若為測試網路: 112368)</translation>
+        <source>Listen for connections on &lt;port&gt; (default: 9333 or testnet: 19333)</source>
+        <translation>在通訊埠 &lt;port&gt; 聽候連線 (預設: 9333, 或若為測試網路: 19333)</translation>
     </message>
     <message>
         <location line="+5"/>

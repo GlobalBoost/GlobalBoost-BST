@@ -1320,8 +1320,8 @@ Adresse: %4
     </message>
     <message>
         <location line="+10"/>
-        <source>123.456 BTC</source>
-        <translation>123.456 BTC</translation>
+        <source>123.456 BST</source>
+        <translation>123.456 BST</translation>
     </message>
     <message>
         <location line="+31"/>
@@ -2238,8 +2238,8 @@ Adresse: %4
     </message>
     <message>
         <location line="-28"/>
-        <source>Listen for connections on &lt;port&gt; (default: 12368 or testnet: 112368)</source>
-        <translation>Lytt etter tilkoblinger på &lt;port&gt; (standardverdi: 12368 eller testnet: 112368)</translation>
+        <source>Listen for connections on &lt;port&gt; (default: 9333 or testnet: 19333)</source>
+        <translation>Lytt etter tilkoblinger på &lt;port&gt; (standardverdi: 9333 eller testnet: 19333)</translation>
     </message>
     <message>
         <location line="+5"/>

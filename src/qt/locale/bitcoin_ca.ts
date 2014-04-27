@@ -1310,7 +1310,7 @@ Address: %4
     </message>
     <message>
         <location line="+10"/>
-        <source>123.456 BTC</source>
+        <source>123.456 BST</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2228,7 +2228,7 @@ Address: %4
     </message>
     <message>
         <location line="-28"/>
-        <source>Listen for connections on &lt;port&gt; (default: 12368 or testnet: 112368)</source>
+        <source>Listen for connections on &lt;port&gt; (default: 9333 or testnet: 19333)</source>
         <translation type="unfinished"/>
     </message>
     <message>

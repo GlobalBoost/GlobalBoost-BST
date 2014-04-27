@@ -1314,7 +1314,7 @@ Address: %4
     </message>
     <message>
         <location line="+10"/>
-        <source>123.456 BTC</source>
+        <source>123.456 BST</source>
         <translation>123.456 بتس</translation>
     </message>
     <message>
@@ -2235,8 +2235,8 @@ Address: %4
     </message>
     <message>
         <location line="-28"/>
-        <source>Listen for connections on &lt;port&gt; (default: 12368 or testnet: 112368)</source>
-        <translation>برای اتصالات به &lt;port&gt; (پیش‌فرض: 12368 یا تست‌نت: 112368) گوش کنید</translation>
+        <source>Listen for connections on &lt;port&gt; (default: 9333 or testnet: 19333)</source>
+        <translation>برای اتصالات به &lt;port&gt; (پیش‌فرض: 9333 یا تست‌نت: 19333) گوش کنید</translation>
     </message>
     <message>
         <location line="+5"/>
