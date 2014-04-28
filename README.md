@@ -14,15 +14,15 @@ Globalboost is a version of Bitcoin using scrypt as a proof-of-work algorithm.
  - 30 seconds block targets
  - 1 Billion total coins
  
- - base58.h PUBKEY_ADDRESS = 58, // Globalboost addresses start with G
+ - base58.h PUBKEY_ADDRESS = 38, // Globalboost addresses start with G
   - src/protocol.h port: return testnet ? 18224 : 8224; 
  - src/init.cpp " -port=<port>           " + _("Listen for connections on <port> (default: 8224 or testnet: 18224)") + "\n" +
  - src/bitcoinrpc.cpp    return GetBoolArg("-testnet", false) ? 18223 : 8223;
  - src/main.h max coin and dPriority
  - Set the genesis block in src/main.cpp LoadBlockIndex paraphrase (pszTimestamp) to any recent news phase. get the latest unix time (do a google), and put in block.nTime. set any nNonce (doesn't really matter)
- - src/base58.h PUBKEY_ADDRESS = 28, // Globalboost addresses start with G
- - src/sendcoinsentry.cpp     ui->payTo->setPlaceholderText(tr("Enter a Globalboost address (e.g. GcdLutynys98Avs51xJmn7whajD9YSro8j)"));
- - change example in signverifymessagedialog.cpp     ui->addressIn_SM->setPlaceholderText(tr("Enter a Globalboost address (e.g. GcdLutynys98Avs51xJmn7whajD9YSro8j)"));
+ - src/base58.h PUBKEY_ADDRESS = 38, // Globalboost addresses start with G
+ - src/sendcoinsentry.cpp     ui->payTo->setPlaceholderText(tr("Enter a Globalboost address (e.g. GZ5zr6tYVtXP782dn1fZ6xh57iWe48pJv3)"));
+ - change example in signverifymessagedialog.cpp     ui->addressIn_SM->setPlaceholderText(tr("Enter a Globalboost address (e.g. GZ5zr6tYVtXP782dn1fZ6xh57iWe48pJv3)"));
  - Checkpoint: you want to disable the checkpoint check initially, otherwise you may get stuck. You have multiple ways to disable it, my way is: open checkpoints.cpp there are 3 functions, comment out the normal return, and make them return either true, 0, or null.
 
 
