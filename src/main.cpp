@@ -2813,13 +2813,13 @@ bool InitBlockIndex() {
         block.hashPrevBlock = 0;
         block.hashMerkleRoot = block.BuildMerkleTree();
         block.nVersion = 1;
-        block.nTime    = 1396994382;
+        block.nTime    = 1398668445;
         block.nBits    = 0x1e0ffff0;
         block.nNonce   = 544370;
 
         if (fTestNet)
         {
-            block.nTime    = 1396994382;
+            block.nTime    = 1398668445;
             block.nNonce   = 544370;
         }
 
