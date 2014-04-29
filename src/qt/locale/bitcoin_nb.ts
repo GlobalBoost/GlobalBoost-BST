@@ -1408,8 +1408,8 @@ Adresse: %4
     </message>
     <message>
         <location line="+34"/>
-        <source>The address to send the payment to (e.g. Ler4HNAEfwYhBmGXcFP2Po1NpRUEiK8km2)</source>
-        <translation>Adressen betalingen skal sendes til  (f.eks. Ler4HNAEfwYhBmGXcFP2Po1NpRUEiK8km2)</translation>
+        <source>The address to send the payment to (e.g. GZ5zr6tYVtXP782dn1fZ6xh57iWe48pJv3)</source>
+        <translation>Adressen betalingen skal sendes til  (f.eks. GZ5zr6tYVtXP782dn1fZ6xh57iWe48pJv3)</translation>
     </message>
     <message>
         <location line="+60"/>
@@ -1449,8 +1449,8 @@ Adresse: %4
     </message>
     <message>
         <location filename="../sendcoinsentry.cpp" line="+1"/>
-        <source>Enter a Globalboost address (e.g. Ler4HNAEfwYhBmGXcFP2Po1NpRUEiK8km2)</source>
-        <translation>Skriv inn en Globalboost adresse (f.eks. Ler4HNAEfwYhBmGXcFP2Po1NpRUEiK8km2)</translation>
+        <source>Enter a Globalboost address (e.g. GZ5zr6tYVtXP782dn1fZ6xh57iWe48pJv3)</source>
+        <translation>Skriv inn en Globalboost adresse (f.eks. GZ5zr6tYVtXP782dn1fZ6xh57iWe48pJv3)</translation>
     </message>
 </context>
 <context>
@@ -1472,8 +1472,8 @@ Adresse: %4
     </message>
     <message>
         <location line="+18"/>
-        <source>The address to sign the message with (e.g. Ler4HNAEfwYhBmGXcFP2Po1NpRUEiK8km2)</source>
-        <translation>Adressen for signering av meldingen (f.eks. Ler4HNAEfwYhBmGXcFP2Po1NpRUEiK8km2)</translation>
+        <source>The address to sign the message with (e.g. GZ5zr6tYVtXP782dn1fZ6xh57iWe48pJv3)</source>
+        <translation>Adressen for signering av meldingen (f.eks. GZ5zr6tYVtXP782dn1fZ6xh57iWe48pJv3)</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -1545,8 +1545,8 @@ Adresse: %4
     </message>
     <message>
         <location line="+21"/>
-        <source>The address the message was signed with (e.g. Ler4HNAEfwYhBmGXcFP2Po1NpRUEiK8km2)</source>
-        <translation>Adressen meldingen var signert med (f.eks. Ler4HNAEfwYhBmGXcFP2Po1NpRUEiK8km2)</translation>
+        <source>The address the message was signed with (e.g. GZ5zr6tYVtXP782dn1fZ6xh57iWe48pJv3)</source>
+        <translation>Adressen meldingen var signert med (f.eks. GZ5zr6tYVtXP782dn1fZ6xh57iWe48pJv3)</translation>
     </message>
     <message>
         <location line="+40"/>
@@ -1566,8 +1566,8 @@ Adresse: %4
     <message>
         <location filename="../signverifymessagedialog.cpp" line="+27"/>
         <location line="+3"/>
-        <source>Enter a Globalboost address (e.g. Ler4HNAEfwYhBmGXcFP2Po1NpRUEiK8km2)</source>
-        <translation>Skriv inn en Globalboost adresse (f.eks. Ler4HNAEfwYhBmGXcFP2Po1NpRUEiK8km2)</translation>
+        <source>Enter a Globalboost address (e.g. GZ5zr6tYVtXP782dn1fZ6xh57iWe48pJv3)</source>
+        <translation>Skriv inn en Globalboost adresse (f.eks. GZ5zr6tYVtXP782dn1fZ6xh57iWe48pJv3)</translation>
     </message>
     <message>
         <location line="-2"/>
