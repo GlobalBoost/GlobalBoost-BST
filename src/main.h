@@ -62,8 +62,6 @@ static const int COINBASE_MATURITY = 100;
 static const unsigned int LOCKTIME_THRESHOLD = 500000000; // Tue Nov  5 00:53:20 1985 UTC
 /** Maximum number of script-checking threads allowed */
 static const int MAX_SCRIPTCHECK_THREADS = 16;
-/** Switch to using Digishield after this block*/
-static const int DIFF_SWITCH_BLOCK = 10;
 #ifdef USE_UPNP
 static const int fHaveUPnP = true;
 #else
