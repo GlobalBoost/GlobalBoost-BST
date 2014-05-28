@@ -1117,6 +1117,10 @@ int64 static GetBlockValue(int nHeight, int64 nFees)
 static const int64 nTargetTimespan = 60 * 60; // Globalboost: 1 hour
 static const int64 nTargetSpacing = 30; // Globalboost: 30 sec
 static const int64 nInterval = nTargetTimespan / nTargetSpacing;
+static const int64_t nTargetTimespanRe = 1*30; // 60 Seconds
+static const int64_t nTargetSpacingRe = 1*30; // 60 seconds
+static const int64_t nIntervalRe = nTargetTimespanRe / nTargetSpacingRe; // 1 block
+
 
 //
 // minimum amount of work that could possibly be required nTime after
@@ -1133,10 +1137,21 @@ unsigned int ComputeMinWork(unsigned int nBase, int64 nTime)
     bnResult.SetCompact(nBase);
     while (nTime > 0 && bnResult < bnProofOfWorkLimit)
     {
+	  if(nBestHeight+1<DIFF_SWITCH_BLOCK)
+	  {
         // Maximum 400% adjustment...
         bnResult *= 4;
         // ... in best-case exactly 4-times-normal target time
         nTime -= nTargetTimespan*4;
+	  }	
+	  else
+	  {
+	    // Maximum 10% adjustment...
+        bnResult = (bnResult * 110) / 100;
+        // ... in best-case exactly 4-times-normal target time
+        nTime -= nTargetTimespanRe*4;
+
+	  }
     }
     if (bnResult > bnProofOfWorkLimit)
         bnResult = bnProofOfWorkLimit;
@@ -1146,26 +1161,41 @@ unsigned int ComputeMinWork(unsigned int nBase, int64 nTime)
 unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader *pblock)
 {
     unsigned int nProofOfWorkLimit = bnProofOfWorkLimit.GetCompact();
+     int nHeight = pindexLast->nHeight + 1;
+    bool fNewDifficultyProtocol = (nHeight >= DIFF_SWITCH_BLOCK);
+    int blockstogoback = 0;
 
+	//set default to pre-v2.0 values
+    int64_t retargetTimespan = nTargetTimespan;
+    int64_t retargetSpacing = nTargetSpacing;
+    int64_t retargetInterval = nInterval;
+
+	//if v2.0 changes are in effect for block num, alter retarget values 
+   if(fNewDifficultyProtocol) {
+      printf("GetNextWorkRequired nActualTimespan Limiting\n");
+      retargetTimespan = nTargetTimespanRe;
+      retargetSpacing = nTargetSpacingRe;
+      retargetInterval = nIntervalRe;
+    }
+	
     // Genesis block
-    if (pindexLast == NULL)
-        return nProofOfWorkLimit;
+    if (pindexLast == NULL) return nProofOfWorkLimit;
 
     // Only change once per interval
-    if ((pindexLast->nHeight+1) % nInterval != 0)
+    if ((pindexLast->nHeight+1) % retargetInterval != 0)
     {
         // Special difficulty rule for testnet:
         if (fTestNet)
         {
             // If the new block's timestamp is more than 2* 10 minutes
             // then allow mining of a min-difficulty block.
-            if (pblock->nTime > pindexLast->nTime + nTargetSpacing*2)
+            if (pblock->nTime > pindexLast->nTime + retargetSpacing*2)
                 return nProofOfWorkLimit;
             else
             {
                 // Return the last non-special-min-difficulty-rules-block
                 const CBlockIndex* pindex = pindexLast;
-                while (pindex->pprev && pindex->nHeight % nInterval != 0 && pindex->nBits == nProofOfWorkLimit)
+                while (pindex->pprev && pindex->nHeight % retargetInterval != 0 && pindex->nBits == nProofOfWorkLimit)
                     pindex = pindex->pprev;
                 return pindex->nBits;
             }
@@ -1176,7 +1206,7 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBl
 
     // Globalboost: This fixes an issue where a 51% attack can change difficulty at will.
     // Go back the full period unless it's the first retarget after genesis. Code courtesy of Art Forz
-    int blockstogoback = nInterval-1;
+    blockstogoback = nInterval-1;
     if ((pindexLast->nHeight+1) != nInterval)
         blockstogoback = nInterval;
 
@@ -1189,10 +1219,17 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBl
     // Limit adjustment step
     int64 nActualTimespan = pindexLast->GetBlockTime() - pindexFirst->GetBlockTime();
     printf("  nActualTimespan = %"PRI64d"  before bounds\n", nActualTimespan);
-    if (nActualTimespan < nTargetTimespan/4)
-        nActualTimespan = nTargetTimespan/4;
-    if (nActualTimespan > nTargetTimespan*4)
-        nActualTimespan = nTargetTimespan*4;
+	// thanks to RealSolid & WDC for this code
+		if(fNewDifficultyProtocol) {
+			printf("GetNextWorkRequired nActualTimespan Limiting\n");
+			if (nActualTimespan < (retargetTimespan - (retargetTimespan/4)) ) nActualTimespan = (retargetTimespan - (retargetTimespan/4));
+			if (nActualTimespan > (retargetTimespan + (retargetTimespan/2)) ) nActualTimespan = (retargetTimespan + (retargetTimespan/2));
+		}
+		else {
+			if (nActualTimespan < retargetTimespan/4) nActualTimespan = retargetTimespan/4;
+			if (nActualTimespan > retargetTimespan*4) nActualTimespan = retargetTimespan*4;
+		}
+
 
     // Retarget
     CBigNum bnNew;
