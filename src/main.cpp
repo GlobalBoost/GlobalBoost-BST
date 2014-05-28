@@ -1117,8 +1117,8 @@ int64 static GetBlockValue(int nHeight, int64 nFees)
 static const int64 nTargetTimespan = 60 * 60; // Globalboost: 1 hour
 static const int64 nTargetSpacing = 30; // Globalboost: 30 sec
 static const int64 nInterval = nTargetTimespan / nTargetSpacing;
-static const int64_t nTargetTimespanRe = 1*30; // 60 Seconds
-static const int64_t nTargetSpacingRe = 1*30; // 60 seconds
+static const int64_t nTargetTimespanRe = 1*30; // 30 Seconds
+static const int64_t nTargetSpacingRe = 1*30; // 30 seconds
 static const int64_t nIntervalRe = nTargetTimespanRe / nTargetSpacingRe; // 1 block
 
 
