@@ -1204,16 +1204,13 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBl
         return pindexLast->nBits;
     }
 
-    // Globalboost: This fixes an issue where a 51% attack can change difficulty at will.
-    // Go back the full period unless it's the first retarget after genesis. Code courtesy of Art Forz
-    blockstogoback = nInterval-1;
-    if ((pindexLast->nHeight+1) != nInterval)
-        blockstogoback = nInterval;
+// The 1st retarget after the genesis
+    if(nInterval >= (pindexLast->nHeight + 1)) nInterval = pindexLast->nHeight;
 
-    // Go back by what we want to be 14 days worth of blocks
+    // Go back by nInterval
     const CBlockIndex* pindexFirst = pindexLast;
-    for (int i = 0; pindexFirst && i < blockstogoback; i++)
-        pindexFirst = pindexFirst->pprev;
+    for(int i = 0; pindexFirst && i < nInterval; i++)
+      pindexFirst = pindexFirst->pprev;
     assert(pindexFirst);
 
     // Limit adjustment step
