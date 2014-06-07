@@ -1,4 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
+// Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -1193,6 +1194,7 @@ void MapPort(bool)
 // The second name should resolve to a list of seed addresses.
 static const char *strMainNetDNSSeed[][2] = {
     {"globalboost.info", "dnsseed.globalboost.info"},
+	{"globalboost.info", "dnsseed2.globalboost.info"},
     {NULL, NULL}
 };
 
@@ -1246,7 +1248,12 @@ void ThreadDNSAddressSeed()
 
 unsigned int pnSeed[] =
 {
-     0xd45e1c45,0x623c966b
+	0xd45e1c45, 0xd84ed0d1, 0xc7153b25, 0xfa18e760, 0x5a0a3d6c, 0x1bc248ce, 0x6ce7fb53, 0x68daaa6b,
+    0xd2fdd25b, 0xb26ed0d1, 0x5a4abf47, 0xce6c2f32, 0x84b0095b, 0x11942118, 0x4b909d5d, 0x7de6c448,
+    0xbba5b5be, 0x161b32d4, 0xd1cf49b2, 0xd1cf49b2, 0x161b32d4, 0xff2b2d18, 0x08b2f1c0, 0xce844c45,
+    0xd2fdd25b, 0x0d98854f, 0xd54886bc, 0x5998b549, 0x93d1ef18, 0xe8b1e2bc, 0xc10bc532, 0x26aa4a4c, 
+    0xa5ec6d59, 0xcb3a0cb0, 0x400f84de, 0xe29c7b46, 0x82da5c17, 0xd48b4c90, 0x5a4824b9, 0x5a0a3d6c, 
+    0xc7131c73, 0x88d0a52e, 0x56853742, 0xb0940b48, 0x623c966b
 };
 
 void DumpAddresses()
